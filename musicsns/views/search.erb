@@ -1,0 +1,25 @@
+<div class="center-vertical">
+<h1>検索フォーム</h1>
+<form action="/search" method="post">
+  <input type="text" name="artist" placeholder="アーティスト名">
+  <input type="submit" value="検索">
+</form>
+<h1>検索結果</h1>
+<div>
+  <% if !@musics.empty? %>
+    <% @musics.each do |music| %>
+    <div>
+      <img src='<%= music["artworkUrl100"] %>'>
+      <p><%= music["artistName"] %></p>
+      <p><%= music["collectionName"] %></p>
+      <p><%= music["trackName"] %></p>
+      <audio id="myMusic" controls loop>
+        <source src="<%= music['previewUrl'] %>">
+      </audio>
+      </div>
+      <% end %>
+  <% else %>
+  検索結果がありません
+  <% end %>
+    </div>
+</div>
